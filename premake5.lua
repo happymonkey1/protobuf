@@ -1,6 +1,6 @@
 project "protobuf"
 	kind "StaticLib"
-    cppdialect "C++20"
+    cppdialect "C++17"
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -27,15 +27,18 @@ project "protobuf"
 		"%{IncludeDir.absl}",
 	}
 
+    links
+    {
+        "absl",
+    }
+
 	filter "system:windows"
 		systemversion "latest"
-		cppdialect "C++20"
 		staticruntime "off"
 
 	filter "system:linux"
 		pic "on"
 		systemversion "latest"
-		cppdialect "C++20"
 		staticruntime "off"
 
 	filter "configurations:Debug"
@@ -59,7 +62,11 @@ project "protoc"
         "src/**.h",
         "src/**.cc",
 
-        "src/**.pb.h"
+        "src/**.pb.h",
+
+        "utf8_range/**.h",
+        "utf8_range/**.c",
+        "utf8_range/**.cc",
 
         -- "upb/**.h",
         -- "upb/**.cc",
@@ -70,25 +77,31 @@ project "protoc"
 
     removefiles
     {
+        "utf8_range/utf8_validity_test.cc",
+        "utf8_range/utf8_to_utf16/*.c",
+        "utf8_range/main.c",
+
         "src/google/protobuf/testing/*.h",
         "src/google/protobuf/testing/*.cc",
 
         "src/google/protobuf/compiler/main_no_generators.cc",
 
-        "src/google/protobuf/compiler/csharp/**.h",
-        "src/google/protobuf/compiler/csharp/**.cc",
-        "src/google/protobuf/compiler/java/**.h",
-        "src/google/protobuf/compiler/java/**.cc",
-        "src/google/protobuf/compiler/objectivec/**.h",
-        "src/google/protobuf/compiler/objectivec/**.cc",
-        "src/google/protobuf/compiler/php/**.h",
-        "src/google/protobuf/compiler/php/**.cc",
-        "src/google/protobuf/compiler/python/**.h",
-        "src/google/protobuf/compiler/python/**.cc",
-        "src/google/protobuf/compiler/ruby/**.h",
-        "src/google/protobuf/compiler/ruby/**.cc",
-        "src/google/protobuf/compiler/rust/**.h",
-        "src/google/protobuf/compiler/rust/**.cc",
+        "src/google/protobuf/compiler/cpp/main.cc",
+
+        -- "src/google/protobuf/compiler/csharp/**.h",
+        --"src/google/protobuf/compiler/csharp/**.cc",
+        --"src/google/protobuf/compiler/java/**.h",
+        --"src/google/protobuf/compiler/java/**.cc",
+        --"src/google/protobuf/compiler/objectivec/**.h",
+        --"src/google/protobuf/compiler/objectivec/**.cc",
+        --"src/google/protobuf/compiler/php/**.h",
+        --"src/google/protobuf/compiler/php/**.cc",
+        -- "src/google/protobuf/compiler/python/**.h",
+        --"src/google/protobuf/compiler/python/**.cc",
+        --"src/google/protobuf/compiler/ruby/**.h",
+        --"src/google/protobuf/compiler/ruby/**.cc",
+        --"src/google/protobuf/compiler/rust/**.h",
+        --"src/google/protobuf/compiler/rust/**.cc",
 
         "upb/**/test.cc",
         "upb/test/**.h",
@@ -138,6 +151,7 @@ project "protoc"
         "src/google/protobuf/compiler/dynamic_message_unittest.cc",
         "src/google/protobuf/compiler/extension_set_unittest.cc",
         "src/google/protobuf/compiler/feature_resolver_test.cc",
+        "src/google/protobuf/compiler/fake_plugin.cc",
         "src/google/protobuf/compiler/generated_enum_util_test.cc",
         "src/google/protobuf/compiler/generated_message_reflection_unittest.cc",
         "src/google/protobuf/compiler/generated_message_tctable_lite_test.cc",
@@ -183,12 +197,26 @@ project "protoc"
         "src/google/protobuf/compiler/cpp/unittest.h",
         "src/google/protobuf/compiler/cpp/unittest.cc",
 
+        "src/google/protobuf/compiler/csharp/csharp_bootstrap_unittest.cc",
+        "src/google/protobuf/compiler/csharp/csharp_generator_unittest.cc",
+        "src/google/protobuf/compiler/java/doc_comment_unittest.cc",
+        "src/google/protobuf/compiler/java/message_serialization_unittest.cc",
+        "src/google/protobuf/compiler/java/plugin_unittest.cc",
+        "src/google/protobuf/compiler/objectivec/line_consumer_unittest.cc",
+        "src/google/protobuf/compiler/objectivec/names_unittest.cc",
+        "src/google/protobuf/compiler/objectivec/text_format_decode_data_unittest.cc",
+        "src/google/protobuf/compiler/text_format_decode_data_unittest.cc",
+        "src/google/protobuf/compiler/python/plugin_unittest.cc",
+        "src/google/protobuf/compiler/ruby/ruby_generator_unittest.cc",
+        "src/google/protobuf/compiler/rust/relative_path_test.cc",
+
         "src/google/protobuf/compiler/cpp/tools/*.h",
         "src/google/protobuf/compiler/cpp/tools/*.cc",
         
         "src/google/protobuf/editions/generated_reflection_test.cc",
         "src/google/protobuf/editions/defaults_test.cc",
         "src/google/protobuf/editions/generated_files_test.cc",
+        "src/google/protobuf/editions/internal_defaults_escape.cc",
 
         "src/google/protobuf/io/coded_stream_unittest.cc",
         "src/google/protobuf/io/io_win32_unittest.cc",
@@ -277,6 +305,11 @@ project "protoc"
         "%{IncludeDir.absl}",
         "utf8_range/"
 	}
+
+    links
+    {
+        "absl",
+    }
 
 	filter "system:windows"
 		systemversion "latest"
