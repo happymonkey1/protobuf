@@ -12,6 +12,7 @@ Testing/Temporary/*
 *.vcxproj
 *.vcxproj.*
 bin-int/
+bin/
 
 /core
 /protoc

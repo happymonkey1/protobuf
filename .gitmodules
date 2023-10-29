@@ -9,3 +9,6 @@
 [submodule "third_party/jsoncpp"]
 	path = third_party/jsoncpp
 	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "utf8_range"]
+	path = utf8_range
+	url = https://github.com/protocolbuffers/utf8_range.git
