@@ -8,6 +8,11 @@ CTestTestfile.cmake
 CMakeFiles/*
 Testing/Temporary/*
 
+
+*.vcxproj
+*.vcxproj.*
+bin-int/
+
 /core
 /protoc
 /test_plugin
