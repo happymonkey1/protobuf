@@ -15,9 +15,9 @@ project "protobuf"
 
         "src/**.inc",
 
-        "utf8_range/**.h",
-        "utf8_range/**.c",
-        "utf8_range/**.cc",
+        "third_party/utf8_range/**.h",
+        "third_party/utf8_range/**.c",
+        "third_party/utf8_range/**.cc",
 
         -- "upb/**.h",
         -- "upb/**.cc",
@@ -28,9 +28,9 @@ project "protobuf"
 
     removefiles
     {
-        "utf8_range/utf8_validity_test.cc",
-        "utf8_range/utf8_to_utf16/*.c",
-        "utf8_range/main.c",
+        "third_party/utf8_range/utf8_validity_test.cc",
+        "third_party/utf8_range/utf8_to_utf16/*.c",
+        "third_party/utf8_range/main.c",
 
         "src/google/protobuf/testing/*.h",
         "src/google/protobuf/testing/*.cc",
@@ -179,7 +179,7 @@ project "protobuf"
         "",
 		"src",
         "%{IncludeDir.absl}",
-        "utf8_range/"
+        "third_party/utf8_range/"
 	}
 
     links
@@ -221,9 +221,9 @@ project "protoc"
 
         "src/**.inc",
 
-        "utf8_range/**.h",
-        "utf8_range/**.c",
-        "utf8_range/**.cc",
+        "third_party/utf8_range/**.h",
+        "third_party/utf8_range/**.c",
+        "third_party/utf8_range/**.cc",
 
         -- "upb/**.h",
         -- "upb/**.cc",
@@ -234,9 +234,9 @@ project "protoc"
 
     removefiles
     {
-        "utf8_range/utf8_validity_test.cc",
-        "utf8_range/utf8_to_utf16/*.c",
-        "utf8_range/main.c",
+        "third_party/utf8_range/utf8_validity_test.cc",
+        "third_party/utf8_range/utf8_to_utf16/*.c",
+        "third_party/utf8_range/main.c",
 
         "src/google/protobuf/testing/*.h",
         "src/google/protobuf/testing/*.cc",
@@ -460,7 +460,7 @@ project "protoc"
         "",
 		"src",
         "%{IncludeDir.absl}",
-        "utf8_range/"
+        "third_party/utf8_range/"
 	}
 
     links
